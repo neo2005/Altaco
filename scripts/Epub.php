@@ -15,12 +15,13 @@ class Epub extends Ebook{
 	}//Fin constructor
 
 	function readMetadata(){
+		$rutaGuardado = $_SERVER["DOCUMENT_ROOT"]."/tmp/";
 
 		//Cargo la ruta donde se ecuentra el archivo opf
-		$pathOpf = (string)simplexml_load_file($_SERVER["DOCUMENT_ROOT"]."/tmp/".$this->path."/META-INF/container.xml")->rootfiles->rootfile['full-path'];
+		$pathOpf = (string)simplexml_load_file($rutaGuardado.$this->path."/META-INF/container.xml")->rootfiles->rootfile['full-path'];
 
 		//cargo el archivo opf
-		$opf = simplexml_load_file($_SERVER["DOCUMENT_ROOT"]."/tmp/".$this->path."/".$pathOpf);
+		$opf = simplexml_load_file($rutaGuardado.$this->path."/".$pathOpf);
 
 		//Extraigo los metadatos
 		$value = $opf->metadata->xpath('//dc:title');
@@ -46,11 +47,13 @@ class Epub extends Ebook{
 
 	function readChapters(){
 
+		$rutaGuardado = $_SERVER["DOCUMENT_ROOT"]."/tmp/";
+
 		//Cargo la ruta donde se ecuentra el archivo opf
-		$pathOpf = (string)simplexml_load_file($_SERVER["DOCUMENT_ROOT"]."/tmp/".$this->path."/META-INF/container.xml")->rootfiles->rootfile['full-path'];
+		$pathOpf = (string)simplexml_load_file($rutaGuardado.$this->path."/META-INF/container.xml")->rootfiles->rootfile['full-path'];
 
 		//cargo el archivo opf
-		$opf = simplexml_load_file($_SERVER["DOCUMENT_ROOT"]."/tmp/".$this->path."/".$pathOpf);
+		$opf = simplexml_load_file($rutaGuardado.$this->path."/".$pathOpf);
 			
 			
 		//obtengo la ruta del archivo toc
@@ -61,7 +64,7 @@ class Epub extends Ebook{
 		$path = explode("/", $pathOpf);
 			
 		//Cargo el archivo toc
-		$this->toc = simplexml_load_file($_SERVER["DOCUMENT_ROOT"]."/tmp/".$this->path."/".$path[0]."/".$pathToc);
+		$this->toc = simplexml_load_file($rutaGuardado.$this->path."/".$path[0]."/".$pathToc);
 			
 		//Recorro el archivo toc para extraer los capitulos
 		
@@ -85,19 +88,21 @@ class Epub extends Ebook{
 	 */
 	function unpackEpub(){
 
-		if (!file_exists($_SERVER["DOCUMENT_ROOT"]."/tmp/".$this->path)){
+		$rutaGuardado = $_SERVER["DOCUMENT_ROOT"]."/tmp/";
+
+		if (!file_exists($rutaGuardado.$this->path)){
 			$zip = new ZipArchive();
 				
 			if ($zip->open($this->ebook) === true){
 				//Extraigo el libro
-				if($zip->extractTo($_SERVER["DOCUMENT_ROOT"]."/tmp/".$this->path)){
+				if($zip->extractTo($rutaGuardado.$this->path)){
 					$zip->close();
 					$this->error = 0;
 					return true;
 				}//Fin if extract to
 
 				else {
-					rmdir($_SERVER["DOCUMENT_ROOT"]."/tmp/".$this->path);
+					rmdir($rutaGuardado.$this->path);
 					$this->error = 2;
 					return false;
 				}//Fin else extract to
@@ -120,13 +125,17 @@ class Epub extends Ebook{
 
 
 	function extractCover(){
+		$rutaGuardado = $_SERVER["DOCUMENT_ROOT"]."/tmp/";
+
+		//Variable global $path
 		global $path;
 		
-		//Guardo la portada
-		$cover = (string)simplexml_load_file($_SERVER["DOCUMENT_ROOT"]."/tmp/".$this->path."/".$this->chapters[0])->body->h1->img['src'];
+		//Guardo la portada y la divido en tokens para eliminar ../
+		$cover = (string)simplexml_load_file($rutaGuardado.$this->path."/".$this->chapters[0])->body->h1->img['src'];
 		
 		$cover = explode("/", $cover);
 		
+		//Compongo el resultado y le añado el directorio en el que se encuentra
 		$this->cover = "";
 		for ($cont = 1 ; $cont < count($cover); $cont++)
 			$this->cover .= $cover[$cont]."/";
@@ -135,16 +144,15 @@ class Epub extends Ebook{
 		
 		$this->cover = $path[0]."/".$this->cover;
 		
+		//Extraigo la ruta donde se cuentran las imagenes
 		$imgPath = explode("/", $this->cover);
-		
 		for($cont = 0; $cont < count($imgPath)-1; $cont++)
 			$this->imgPath .= $imgPath[$cont]."/";
 		
 		$this->imgPath = substr($this->imgPath, 0, -1);
 		
-		
+		//Elimino la portada del grupo de capitulos y vuelvo a reindexar
 		unset($this->chapters[0]);
-		
 		$this->chapters = array_values($this->chapters);
 		
 	}//Fin encodeChapters
@@ -154,7 +162,7 @@ class Epub extends Ebook{
 		global $path;
 
 		//Extraigo el style, uso la portada para evitar errores de codificacion
-		$style = (string)simplexml_load_file($_SERVER["DOCUMENT_ROOT"]."/tmp/".$this->path."/".$this->chapters[0])->head->link["href"];
+		$style = (string)simplexml_load_file($rutaGuardado.$this->path."/".$this->chapters[0])->head->link["href"];
 		
 		//La separo en tokens para eliminar ../
 		$style = explode("/", $style);
