@@ -150,58 +150,35 @@ class Epub extends Ebook{
 	}//Fin encodeChapters
 	
 	function extractStyle(){
+		//Variable global $path
 		global $path;
+
+		//Extraigo el style, uso la portada para evitar errores de codificacion
 		$style = (string)simplexml_load_file($_SERVER["DOCUMENT_ROOT"]."/tmp/".$this->path."/".$this->chapters[0])->head->link["href"];
+		
+		//La separo en tokens para eliminar ../
 		$style = explode("/", $style);
 		
+		//Compongo el resto
 		$this->stylePath = "";
 		for ($cont = 1 ; $cont < count($style); $cont++)
 			$this->stylePath .= $style[$cont]."/";
 		
-		$this->stylePath = substr($this->stylePath, 0, -1);
-		
+		//Le añado el directorio en el que se encuentra y le quito el / que sobra
+		$this->stylePath = substr($this->stylePath, 0, -1);	
 		$this->stylePath = $path[0]."/".$this->stylePath;
 	}
 
 
 	//Metodos get
-	function getToc (){
-		return $this->toc;
-	}
-	function getMetadata(){
-		return $this->metadata;
-	}
-	function getEbook(){
-		return $this->ebook;
-	}
-	function getChapters(){
-		return $this->chapters;
-	}
-	
-	function getCover(){
-		return $this->cover;
-	}
-	
-	function getPath(){
-		return $this->path;
-	}
-
-	function getError(){
-		return $this->error;
-	}
-
-	function getImgPath(){
-		return $this->imgPath;
-	}
-
-	function getStylePath(){
-		return $this->stylePath;
-	}
-
-	function getNameChapters(){
-		return $this->nameChapters;
-	}
-
-	
-
+	function getToc (){return $this->toc;}
+	function getMetadata(){return $this->metadata;}
+	function getEbook(){return $this->ebook;}
+	function getChapters(){return $this->chapters;}
+	function getCover(){return $this->cover;}
+	function getPath(){return $this->path;}
+	function getError(){return $this->error;}
+	function getImgPath(){return $this->imgPath;}
+	function getStylePath(){return $this->stylePath;}
+	function getNameChapters(){return $this->nameChapters;}
 }
