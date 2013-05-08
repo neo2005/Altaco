@@ -1,5 +1,31 @@
 <?php 
 include $_SERVER["DOCUMENT_ROOT"]."/scripts/Epub.php";
+
+if(!isset($_FILES["libroSubido"]) || !$_FILES["libroSubido"]["type"]== "application/octet-stream" || $_FILES["libroSubido"]["error"] != 0 || !preg_match("/^.*\.epub$/" ,$_FILES["libroSubido"]["name"])){
+	header('Location: http://www.altaco.es?e=0');
+}
+
+//Se debe dar el nombre del archivo en funcion del ultimo id de la base de datos, como en nuestro caso aun no esta la base de datos hecha con datos, voy a ponerle el mismo nombre
+//Esto debera ser cambiado en el futuro cuando el codigo este mas avanzado
+
+$name = $_SERVER["DOCUMENT_ROOT"]."/libros_subidos/".$_FILES["libroSubido"]["name"];
+
+if (move_uploaded_file($_FILES["libroSubido"]["tmp_name"], $name)){
+	
+	try {
+		$book = new Epub($name);
+		$book->unpackEpub();
+		$book->readMetadata();
+		$book->readChapters();
+		$book->extractCover();
+		$book->extractStyle();
+	}
+	catch (Exception $e){
+		header('Location: http://www.altaco.es?e=1');
+	}
+}
+
+$metadata = $book->getMetadata();
 ?>
 
 <!DOCTYPE html>
@@ -86,7 +112,7 @@ include $_SERVER["DOCUMENT_ROOT"]."/scripts/Epub.php";
 								</tr>
 
 								<tr>
-									<td><input type="text" name="titulo" id="titulo"></td>
+									<td><input type="text" name="titulo" id="titulo" value="<?php echo $metadata["title"]?>"></td>
 								</tr>
 
 								<tr>
@@ -94,7 +120,7 @@ include $_SERVER["DOCUMENT_ROOT"]."/scripts/Epub.php";
 								</tr>
 
 								<tr>
-									<td><input type="text" name="autor" id="autor"></td>
+									<td><input type="text" name="autor" id="autor" value="<?php echo $metadata["author"]?>"></td>
 								</tr>
 								
 								<tr>
@@ -102,7 +128,7 @@ include $_SERVER["DOCUMENT_ROOT"]."/scripts/Epub.php";
 								</tr>
 
 								<tr>
-									<td><input type="text" name="genero" id="genero"></td>
+									<td><input type="text" name="genero" id="genero" value="<?php echo $metadata["category"]?>"></td>
 								</tr>
 
 								<tr>
@@ -110,7 +136,7 @@ include $_SERVER["DOCUMENT_ROOT"]."/scripts/Epub.php";
 								</tr>
 
 								<tr>
-									<td><textarea name="sinopsis" id="sinopsis"></textarea></td>
+									<td><textarea name="sinopsis" id="sinopsis"><?php echo $metadata["description"]?></textarea></td>
 								</tr>
 
 								<tr>

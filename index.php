@@ -258,7 +258,7 @@
 				<h1 id="numLibros">Se han encontrado 6 libros</h1>
 
 				<div id="dialogoSubida" title="Subida de libro">
-					<form action="aplication/procesar.php" id="formSubida" method="post" enctype="multipart/form-data">
+					<form action="subida.php" id="formSubida" method="post" enctype="multipart/form-data">
 				  		<p>No nos hacemos reponsables de las subidas que realizan nuestros usuarios, el que lo sube lo paga.</p>
 				  		<input type="file" name="libroSubido" id="libroSubido">
 				  		<input type="submit" value="Enviar" id="enviar">
