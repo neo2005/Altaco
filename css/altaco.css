@@ -1,0 +1,401 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	background-image: url(../recursos/img/pattern10.png);
+	font-family: Ubuntu-Regular;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+.clear {
+	clear: both;
+}
+
+
+/* Barra de Menu */
+#menuBar, #subBarra {
+	height: 40px;
+	padding: 2px 20px;
+	background-image: url(../recursos/img/pattern1.png);
+	overflow: hidden;
+	box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.88), 0 2px rgba(255, 255, 255, 0.16), 0px 4px 15px rgba(0, 0, 0, 0.77);
+}
+
+#menuBar {
+	position: relative;
+	z-index: 5;
+}
+
+#menuIzquierda {
+	float: left;
+}
+
+#menuIzquierda, #menuDerecha, #conSubBarra  {
+	list-style-type: none;
+	margin: 0px;
+	padding: 2px 0px;
+	padding-top: 4px;
+	color: white;
+}
+
+#menuDerecha {
+	float: right;
+	padding-right: 15px;
+	padding-top: 4px;
+}
+
+#menuIzquierda li, #menuDerecha  li, #conSubBarra li {
+	display: inline-block;
+	color: white;
+	margin-right: 20px;
+
+}
+
+
+#conSubBarra li {
+	margin-right: 10px;
+}
+
+#conSubBarra li > label {
+	color: white;
+	position: relative;
+	top: 2px;
+}
+
+#usuario { 
+	font-size: 1.2em;
+	color: white;
+	position: relative;
+	top: 4px;
+}
+
+#cajonUsuario {
+	padding: 7px 7px;
+	position: absolute;
+	right: 14px;
+	top: 44px;
+	z-index: 4;
+	background-image: url(../recursos/img/pattern1.png);
+	border-radius: 0px 0px 10px 10px;
+	box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.88), 0 2px rgba(255, 255, 255, 0.16), 0px 4px 15px rgba(0, 0, 0, 0.77);
+	display: none;
+}
+
+#cajonUsuario input[type="text"], #cajonUsuario input[type="password"] {
+	padding: 4px 5px;
+	border: 1px solid rgba(102, 102, 102, 0.23);
+	color: white;
+	background: rgba(0, 0, 0, 0.8);
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 2px rgba(255, 255, 255, 0.08);
+	border-radius: 8px; 
+}
+
+#cajonLogueado {
+	width: 100px;
+	text-align: center;
+	margin-right: 20px; 
+
+}
+
+#cajonLogueado a {
+	color: white;
+	font-size: 1.3em;
+}
+
+#cajonLogueado .ui-icon {
+	float: left;
+	position: relative;
+	top: 5px;
+
+}
+
+#cajonUsuario input[type="submit"], #cajonUsuario input[type="button"] {
+	padding: 2px 8px;
+	margin-top: 8px;
+	font-size: 1em;
+}
+
+#cajonUsuario label {
+	color: white;
+}
+
+#tituloWeb {
+	font-size: 1.5em;
+	padding: 0px;
+	margin: 0px;
+	margin-top: -3px;
+	position: relative;
+	top: 5px;
+}
+
+#menuBar a {
+	color: white;
+}
+
+#usuario {
+	margin-right: -15px;
+}
+
+
+#perfilUsuario {
+	height: 30px;
+	width: 30px;
+	float: right;
+	position: relative;
+	top: 5px;
+}
+
+
+/* Tamaño para el slider */
+#tamanosLibros {
+	width: 150px;
+	position: relative;
+	top: 4px;
+}
+
+
+#subBarra {
+	max-width: 1000px;
+	margin: 0 auto;
+	border-radius: 0px 0px 10px 10px;
+	position: relative;
+	z-index: 1;
+	display: none;
+}
+
+#conSubBarra {
+	margin: 0 auto;
+	width: 950px;
+}
+
+/* Librería */
+
+#contenidoPortada {
+	max-width: 1500px;
+	margin: 0 auto;
+}
+
+.libro {
+	padding: 20px;
+	width: 200px;
+	float: left;
+}
+
+.libro img {
+	width: 200px;
+	height: 270px;
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.9);
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.libro div, #numLibros {
+	text-align: center;
+	text-shadow: 2px 2px 1px #D1A37D;
+}
+
+.libro div a:first-child {
+	font-weight: bold;
+}
+
+#librosPortada {
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+#librosPortada #opciones {
+	float: left;
+	list-style-type: none;
+	font-size: 1.8em;
+	text-shadow: 2px 2px 1px #D1A37D;
+	padding-left: 25px;
+	padding-top: 50px;
+}
+
+#librosPortada #opciones li {
+	padding: 4px 0px;
+}
+
+#librosPortada #opciones li:hover {
+	color: #720D04;
+}
+
+#librosPortada #opciones .seleccionado {
+	/*color: #720404;*/
+	color: rgba(114, 52, 4, 0.87);
+}
+
+#librosPortada #opciones .seleccionado:hover {
+	/*color: #720404;*/
+	color: rgba(114, 52, 4, 0.87);
+}
+
+
+/* Separador para los libros de la portada */
+#separador  {
+	padding-top: 9px;
+	background: url(../recursos/img/separador.png) center top -79px no-repeat;
+}
+
+
+/* Cargando */
+#cargando {
+	width: 280px;
+	height: 150px;
+	position: fixed;
+	bottom: 15px;
+	right: 0px;
+	background: url(../recursos/img/cargando.gif) 0px -126px;
+
+	display: none; /* Quitar cuando esté cargando */
+}
+
+
+/* Fuentes */
+
+@font-face {
+	font-family: DroidSans;
+	src: url('../recursos/fonts/DroidSans.ttf'),
+    	 url('../recursos/fonts/DroidSans.eot'),
+    	 url('../recursos/fonts/DroidSans.woff');
+}
+
+@font-face {
+	font-family: Ubuntu-Regular;
+	src: url('../recursos/fonts/Ubuntu-Regular.ttf'),
+    	 url('../recursos/fonts/Ubuntu-Regular.eot'),
+    	 url('../recursos/fonts/Ubuntu-Regular.woff');
+}
+
+
+
+
+
+
+
+
+
+
+/* Retoques para JQuery UI */
+
+.ui-button-text-only .ui-button-text {
+	padding: .4px 1em;
+}
+
+.cbText {
+	margin-right: -5px;
+	padding: 3px 10px;
+}
+.cbButton {
+	border-radius: 0px 6px 6px 0px;
+}
+ 
+.cbButton .ui-button-text {
+	padding: 0px 6px;
+}
+
+
+
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 2px;
+} 
+
+
+
+/* Presentacion de Libro */
+
+#presentacionLibro {
+	max-width: 1000px;
+	margin: 0 auto;
+	margin-top: 40px;
+}
+
+#portada {
+	width: 340px;
+	height: 470px;
+	float: left;
+	box-shadow: 1px 1px 14px black;
+	margin: 0px 20px;
+}
+
+#infoLibro {
+	padding-top: 30px;
+	text-shadow: 2px 2px 1px #D1A37D;
+	padding-right: 20px;
+}
+
+
+#presentacionLibro h2, #presentacionLibro h3, #presentacionLibro h4 {
+	margin: 0px;
+	margin-bottom: 5px;
+}
+
+#subInfo {
+	float: right;
+	text-align: right;
+}
+
+#presentacionLibro div {
+	margin: 20px 0px;
+}
+
+#estadisticasLibro {
+	border-collapse: collapse;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 60px;
+}
+
+#estadisticasLibro tr, #estadisticasLibro th {
+	padding: 4px 8px;
+	font-size: 1.1em;
+}
+
+/*
+
+#comentarios {
+	padding-top: 25px;
+}
+
+.comentario img {
+	width: 85px;
+	height: 85px;
+	margin-right: 15px;
+	float: left;
+}
+
+.comentario .contComentario div {
+	margin: 0px;
+	padding: 0px;
+}
+
+.contComentario {
+	float: left;
+}*/
+
+
+
+/* Subida */
+
+#cajonSubida input[type=text], #cajonSubida textarea {
+	width: 570px;
+	background: rgba(179, 112, 73, 0.39);
+	border: 3px dashed rgb(170, 91, 46);
+	padding: 1px 12px;
+}
+
+
+#cajonSubida #sinopsis {
+ 	resize: vertical;
+ 	height: 150px;
+}
+
+#botones {
+	text-align: right;
+}

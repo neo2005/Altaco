@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="utf-8">
+	<title>Altaco</title>
+	
+	<link rel="stylesheet" type="text/css" href="css/ui-darkness/jquery-ui.css" />
+	<link rel="stylesheet" type="text/css" href="css/altaco.css">
+	
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script src="js/jquery-ui-1.10.2.custom.min.js"></script>
+	<script src="js/altaco.js"></script>
+
+</head>
+
+<body>
+
+	<div id="wrapper">
+
+		<div id="menuBar">
+
+			<ul id="menuIzquierda">
+				<li>
+					<a href="/"><h1 id="tituloWeb" title="Ir a la librería">Altaco</h1></a>
+				</li>
+
+				<li>
+                    <input type="checkbox" id="anadir" /><label for="anadir">Añadir a mis libros</label>
+				</li>
+				
+				<li id="descargar" >Descargar</li>
+
+				<li id="eliminar">Eliminar</li>
+
+				
+			</ul>
+			
+			<a href="#"><img id="perfilUsuario" src="recursos/img/usuario.jpg" alt="imagenUsuario"></a>
+
+			<ul id="menuDerecha">
+				<li><a href="#" id="usuario">Usuario</a></li>
+			</ul>
+
+			<div class="clear"></div>
+
+		</div>
+
+
+		<!-- En caso de estar sin loguear --> 
+		<div id="cajonUsuario">
+
+				<table id="cajonLogueado">
+					<tbody>
+
+						<tr>
+							<td><span class="ui-icon ui-icon-person"></span><a href="#">Perfil</a></td>
+						</tr>
+
+						<tr>
+							<td><span class="ui-icon ui-icon-power"></span><a href="#">Salir</a></td>
+						</tr>
+
+					</tbody>
+				</table>
+		</div>
+
+
+
+		<div id="content">
+
+			<div id="presentacionLibro">
+
+
+				<img id="portada" src="recursos/img/PortadaEjemplo.jpg">
+
+				<div id="infoLibro">
+
+
+					<div id="subInfo">
+						<h4>Terror</h4>
+						<h3>Carlos Sisí</h3>
+					</div>
+
+					<h1>Los Caminantes</h1>
+					
+					<div id="sinopsis">Nadie sabía cómo había empezado todo, exactamente. El mundo se había desestabilizado mucho antes de que ningún científico hubiese podido dar alguna explicación. Ningún programa de televisión aguantó el tiempo suficiente como para teorizar sobre el problema. Al principio podías verlo en la televisión. Hablaban sobre ello - muy poco al principio, pero luego cada vez más; en la televisión basura de la noche, en los programas nocturnos líderes de audiencia, hasta que ya no se hablaba de otra cosa y la noticia del año lo inundaba todo.</div>
+						
+
+					<table id="estadisticasLibro">
+						<thead>
+							<tr>
+								<th>Leído</th>
+								<th>Primera Lectura</th>
+								<th>Ultima Lectura</th>
+								<th>Nota</th>
+							</tr>
+						</thead>
+						<tbody>
+							<td>15%</td>
+							<td>14 Enero</td>
+							<td>20 Febrero</td>
+							<td>8</td>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="clear"></div>
+
+				<!-- LOS COMENTARIOS LOS DEJO A MEDIAS, QUE YA TENEMOS DEMASIADO TRABAJO
+
+				<div id="comentarios">
+
+					<div class="comentario">
+
+						<img src="recursos/img/usuario.jpg">
+						<div class="contComentario">
+							<h3>Nombre Usuario</h3>
+							<div>Me ha gustado mucho leer la reseña de un libro aquí. Mi enhorabuena, señor Azorín.</div>
+						</div>
+
+						<div class="clear"></div>
+
+					</div>
+
+
+				</div>
+
+				-->
+
+
+
+				<div class="clear"></div>
+
+			</div>
+
+	</div>
+
+
+</body>
+
+
+</html>
