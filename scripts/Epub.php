@@ -11,11 +11,13 @@ class Epub extends Ebook{
 		$this->error = 0;
 		$name = explode("/", $this->ebook);
 		$this->path = end($name);
+		global $rutaGuardado;
+		$rutaGuardado = $_SERVER["DOCUMENT_ROOT"]."/tmp/";
 
 	}//Fin constructor
 
 	function readMetadata(){
-		$rutaGuardado = $_SERVER["DOCUMENT_ROOT"]."/tmp/";
+		global $rutaGuardado;
 
 		//Cargo la ruta donde se ecuentra el archivo opf
 		$pathOpf = (string)simplexml_load_file($rutaGuardado.$this->path."/META-INF/container.xml")->rootfiles->rootfile['full-path'];
@@ -47,7 +49,7 @@ class Epub extends Ebook{
 
 	function readChapters(){
 
-		$rutaGuardado = $_SERVER["DOCUMENT_ROOT"]."/tmp/";
+		global $rutaGuardado;
 
 		//Cargo la ruta donde se ecuentra el archivo opf
 		$pathOpf = (string)simplexml_load_file($rutaGuardado.$this->path."/META-INF/container.xml")->rootfiles->rootfile['full-path'];
@@ -88,7 +90,7 @@ class Epub extends Ebook{
 	 */
 	function unpackEpub(){
 
-		$rutaGuardado = $_SERVER["DOCUMENT_ROOT"]."/tmp/";
+		global $rutaGuardado;
 
 		if (!file_exists($rutaGuardado.$this->path)){
 			$zip = new ZipArchive();
@@ -125,7 +127,7 @@ class Epub extends Ebook{
 
 
 	function extractCover(){
-		$rutaGuardado = $_SERVER["DOCUMENT_ROOT"]."/tmp/";
+		global $rutaGuardado;
 
 		//Variable global $path
 		global $path;
@@ -158,6 +160,7 @@ class Epub extends Ebook{
 	}//Fin encodeChapters
 	
 	function extractStyle(){
+		global $rutaGuardado;
 		//Variable global $path
 		global $path;
 
