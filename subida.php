@@ -2,7 +2,7 @@
 include $_SERVER["DOCUMENT_ROOT"]."/scripts/Epub.php";
 
 if(!isset($_FILES["libroSubido"]) || !$_FILES["libroSubido"]["type"]== "application/octet-stream" || $_FILES["libroSubido"]["error"] != 0 || !preg_match("/^.*\.epub$/" ,$_FILES["libroSubido"]["name"])){
-	header('Location: http://www.altaco.es?e=0');
+	header('Location: http://www.altaco.es');
 }
 
 //Se debe dar el nombre del archivo en funcion del ultimo id de la base de datos, como en nuestro caso aun no esta la base de datos hecha con datos, voy a ponerle el mismo nombre
@@ -112,7 +112,7 @@ $metadata = $book->getMetadata();
 								</tr>
 
 								<tr>
-									<td><input type="text" name="titulo" id="titulo" value="<?php echo $metadata["title"]?>"></td>
+									<td><input type="text" name="tituloB" id="tituloB" value="<?php echo $metadata["title"]?>"></td>
 								</tr>
 
 								<tr>
@@ -120,7 +120,7 @@ $metadata = $book->getMetadata();
 								</tr>
 
 								<tr>
-									<td><input type="text" name="autor" id="autor" value="<?php echo $metadata["author"]?>"></td>
+									<td><input type="text" name="autor" id="autorB" value="<?php echo $metadata["author"]?>"></td>
 								</tr>
 								
 								<tr>
@@ -128,8 +128,17 @@ $metadata = $book->getMetadata();
 								</tr>
 
 								<tr>
-									<td><input type="text" name="genero" id="genero" value="<?php echo $metadata["category"]?>"></td>
+									<td><input type="text" name="genero" id="generoB" value="<?php echo $metadata["category"]?>"></td>
 								</tr>
+								
+								<tr>
+									<td><label for="capitulos"><h2>Capitulos</h2></label></td>
+								</tr>
+
+								<tr>
+									<td><input type="text" name="capitulos" id="capitulos" value="<?php echo count($book->getChapters())?>" readonly="readonly"></td>
+								</tr>
+								
 
 								<tr>
 									<td><label for="sinopsis"><h2>Sinopsis</h2></label></td>
